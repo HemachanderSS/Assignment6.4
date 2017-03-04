@@ -30,7 +30,8 @@ dump orderm;
 
 dump orderf;
 
-2.Write a pig script to find the number of people died and survived in each class
+2.Write a pig script to find the number of people died and survived in each class
+
 
 titanic = load '/user/acadgild/titanicdata.txt' using PigStorage(',') as (Passengerid:int, Survived:int, Pclass:int, Name, Sex:chararray, Age:int, Sibsp:int, Parch:int, Ticket:chararray, Fare:float, Cabin:chararray, Embarked:chararray);
 
@@ -41,10 +42,10 @@ survived = filter titanic by survived == 1;
 
 
 
-grpd = group dead all;
+grpd = group dead by Pclass;
 
 
-grps = group survived all;
+grps = group survived by Pclass;
 
 
 orderd = foreach grpd generate COUNT(dead);
